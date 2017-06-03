@@ -16,7 +16,7 @@ defmodule Accumulate do
   """
 
   @spec accumulate(list, (any -> any)) :: list
-  def accumulate(list, fun) do
-    Enum.map(list, fun)
-  end
+  def accumulate(list, fun), do: accumulate(list, fun, [])
+  def accumulate([], fun, acc), do: acc
+  def accumulate([elem|list], fun, acc), do: accumulate(list, fun, acc ++ [fun.(elem)])
 end
