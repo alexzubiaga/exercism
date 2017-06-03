@@ -15,7 +15,8 @@ defmodule PigLatin do
   """
   @spec translate(phrase :: String.t()) :: String.t()
   def translate(phrase) do
-    ~w(#{phrase})
+    phrase
+    |> String.split
     |> Enum.map(&pigword/1)
     |> Enum.join(" ")
   end
@@ -26,18 +27,10 @@ defmodule PigLatin do
     end
   end
 
-  for consonantLike <- ["squ", "thr", "sch", "ch", "qu", "th"] do
+  for consonantLike <- ["squ", "thr", "sch", "ch", "qu", "th", quote do <<var!(consonant)::bytes-size(1)>> end] do
     defp pigword(unquote(consonantLike) <> rest) do
       rest <> unquote(consonantLike) <> "ay"
     end
-  end
-
-  defp pigword(<<consonant::bytes-size(1)>> <> rest) do
-    rest <> consonant <> "ay"
-  end
-
-  defp pigword(word) do
-    word
   end
 end
 
