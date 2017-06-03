@@ -27,9 +27,9 @@ defmodule PigLatin do
     end
   end
 
-  for consonantLike <- ["squ", "thr", "sch", "ch", "qu", "th", quote do <<var!(consonant)::bytes-size(1)>> end] do
-    defp pigword(unquote(consonantLike) <> rest) do
-      rest <> unquote(consonantLike) <> "ay"
+  for consonant <- ["squ", "thr", "sch", "ch", "qu", "th", quote do <<var!(consonant)::bytes-size(1)>> end] do
+    defp pigword(unquote(consonant) <> rest) do
+      rest <> unquote(consonant) <> "ay"
     end
   end
 end
