@@ -23,10 +23,10 @@ defmodule RunLengthEncoder do
   def decode(string) do
     ~r/(\p{N}*)([\p{L} ])/u
     |> Regex.scan(string, [capture: :all_but_first])
-    |> Stream.flat_map(fn
-        ["", i] -> [i]
+    |> Stream.map(fn
+        ["", i] -> i
         [c, i] -> {count, _} = Integer.parse(c)
-                  for _ <- 1..count, do: i
+                  String.duplicate(i, count)
       end)
     |> Enum.join()
   end
