@@ -26,9 +26,9 @@ defmodule ProteinTranslation do
   def of_rna(rna) do
     rna
     |> String.graphemes
-    |> Enum.chunk(3)
-    |> Enum.map(&to_string/1)
-    |> Enum.map(&of_codon/1)
+    |> Stream.chunk(3)
+    |> Stream.map(&to_string/1)
+    |> Stream.map(&of_codon/1)
     |> Enum.reduce_while({:ok, []}, &sequencer/2)
   end
 
