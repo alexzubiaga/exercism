@@ -9,7 +9,7 @@ defmodule RotationalCipher do
   @spec rotate(text :: String.t(), shift :: integer) :: String.t()
   def rotate(text, shift) do
     text
-    |> String.graphemes 
+    |> String.graphemes
     |> Enum.map(fn c -> rot(c, shift) end)
     |> Enum.join
   end

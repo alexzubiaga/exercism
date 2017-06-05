@@ -1,5 +1,5 @@
 defmodule ProteinTranslation do
-  @codonToProtein %{
+  @codon_to_protein %{
     "UGU" => "Cysteine",
     "UGC" => "Cysteine",
     "UUA" => "Leucine",
@@ -22,7 +22,7 @@ defmodule ProteinTranslation do
   @doc """
   Given an RNA string, return a list of proteins specified by codons, in order.
   """
-  @spec of_rna(String.t()) :: { atom,  list(String.t()) }
+  @spec of_rna(String.t()) :: {atom,  list(String.t())}
   def of_rna(rna) do
     rna
     |> String.graphemes
@@ -63,9 +63,9 @@ defmodule ProteinTranslation do
   UAG -> STOP
   UGA -> STOP
   """
-  @spec of_codon(String.t()) :: { atom, String.t() }
+  @spec of_codon(String.t()) :: {atom, String.t()}
   def of_codon(codon) do
-    protein = Map.fetch(@codonToProtein, codon)
+    protein = Map.fetch(@codon_to_protein, codon)
     case protein do
        :error -> {:error, "invalid codon"}
        p -> p

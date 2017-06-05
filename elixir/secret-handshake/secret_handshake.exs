@@ -22,7 +22,7 @@ defmodule SecretHandshake do
       blink   :: bits-size(1),
       wink    :: bits-size(1)
     >> = <<code::integer-size(5)>>
-    
+
     []
     |> doIf(jump, &(["jump"|&1]))
     |> doIf(eyes, &(["close your eyes"|&1]))

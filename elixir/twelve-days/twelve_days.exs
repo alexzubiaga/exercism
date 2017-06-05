@@ -20,7 +20,7 @@ defmodule TwelveDays do
   """
   @spec verse(number :: integer) :: String.t()
   def verse(number) do
-    Enum.at(@verses, number-1)
+    Enum.at(@verses, number - 1)
   end
 
   @doc """
