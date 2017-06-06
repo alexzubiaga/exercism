@@ -8,11 +8,11 @@ defmodule Strain do
   @spec keep(list :: list(any), fun :: ((any) -> boolean), filtered :: list(any)) :: list(any)
   def keep(list, fun, filtered \\ [])
 
-  def keep([], _ , filtered), do: filtered
+  def keep([], _ , filtered), do: Enum.reverse(filtered)
 
   def keep([item|list], fun, filtered) do
     if fun.(item) do
-      keep(list, fun, filtered ++ [item])
+      keep(list, fun, [item | filtered])
     else
       keep(list, fun, filtered)
     end

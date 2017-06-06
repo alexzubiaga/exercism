@@ -21,18 +21,19 @@ defmodule PigLatin do
     |> Enum.join(" ")
   end
 
-  for vovel <- ["yt", "xr", "a", "e", "i", "o", "u"] do
-    defp pigword(unquote(vovel) <> rest) do
-      unquote(vovel) <> rest <> "ay"
+  @vovels ["yt", "xr", "a", "e", "i", "o", "u"]
+  for vovel <- @vovels do
+    defp pigword((unquote(vovel) <> _) = word) do
+      word <> "ay"
     end
   end
 
-  for consonant <- [
-      "squ", "thr", "sch", "ch", "qu", "th",
-      quote do <<var!(consonant)::bytes-size(1)>> end
-    ] do
-    defp pigword(unquote(consonant) <> rest) do
-      rest <> unquote(consonant) <> "ay"
+  for consonant <-
+      ["squ", "thr", "sch", "ch", "qu", "th"]
+      ++ (for letter <- 97..122, do: <<letter>>) -- @vovels do
+    length = byte_size consonant
+    defp pigword(<<consonant::binary-unquote(length), rest::binary>>) when consonant == <<unquote(consonant)>> do
+      rest <> consonant <> "ay"
     end
   end
 end
