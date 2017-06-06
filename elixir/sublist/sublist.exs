@@ -16,5 +16,5 @@ defmodule Sublist do
   defp is_sublist([] , _, _), do: true
   defp is_sublist(_ , [], _), do: false
   defp is_sublist([x | xs] , [x | ys], store), do: is_sublist(xs, ys, store)
-  defp is_sublist(_ , [y | ys], {a, [b | bs]}), do: is_sublist(a, bs, {a, bs})
+  defp is_sublist(_ , _, {a, [_ | bs]}), do: is_sublist(a, bs, {a, bs})
 end
