@@ -40,7 +40,8 @@ defmodule AnagramTest do
 
   # @tag :pending
   test "multiple anagrams" do
-    matches = Anagram.match "allergy", ~w(gallery ballerina regally clergy largely leading)
+    matches =
+      Anagram.match "allergy", ~w(gallery ballerina regally clergy largely leading)
     assert matches == ["gallery", "regally", "largely"]
   end
 
