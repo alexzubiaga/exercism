@@ -15,7 +15,8 @@ defmodule Exercism do
 
     defp deps do
     [
-        {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
+        {:credo, "~> 0.8", only: [:dev, :test], runtime: false},
+        # {:wobserver, "~> 0.1"}
     ]
     end
 end
