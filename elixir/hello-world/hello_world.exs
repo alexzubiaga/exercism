@@ -29,7 +29,7 @@ defmodule HelloWorld do
     "Hello, World!"
   end
   @spec hello(String.t) :: String.t
-  def hello(name) do
-    "Hello, #{name}!"
+  def hello(n) do
+    "Hello, #{n}!"
   end
 end
